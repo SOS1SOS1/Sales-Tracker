@@ -1,0 +1,115 @@
+<div class="row" style="height: 100%;">
+    <div class="col">
+        <div class="row" style="min-height: 70px;">
+            <div class="col-auto" style="padding: 10px; margin-left: 16px;">
+                <div class="block" (click)="setActive('producers')">
+                    <h4 class="header" [ngClass]="{'active': active_page == 'producers'}">STAFF</h4>
+                </div>
+            </div>
+            <div class="col-auto" style="padding: 10px; margin-left: 5px;">
+                <div class="block" (click)="setActive('life')">
+                    <h4 class="header" [ngClass]="{'active': active_page == 'life'}">LIFE</h4>
+                </div>
+            </div>
+            <div class="col-auto" style="padding: 10px; margin-left: 5px;">
+                <div class="block" (click)="setActive('auto')">
+                    <h4 class="header" [ngClass]="{'active': active_page == 'auto'}">AUTO</h4>
+                </div>
+            </div>
+            <div class="col-auto" style="padding: 10px; margin-left: 5px;">
+                <div class="block" (click)="setActive('bank')">
+                    <h4 class="header" [ngClass]="{'active': active_page == 'bank'}">BANK</h4>
+                </div>
+            </div>
+            <div class="col-auto" style="padding: 10px; margin-left: 5px;">
+                <div class="block" (click)="setActive('fire')">
+                    <h4 class="header" [ngClass]="{'active': active_page == 'fire'}">FIRE</h4>
+                </div>
+            </div>
+            <div class="col-auto" style="padding: 10px; margin-left: 5px;">
+                <div class="block" (click)="setActive('health')">
+                    <h4 class="header" [ngClass]="{'active': active_page == 'health'}">HEALTH</h4>
+                </div>
+            </div>
+            <div class="col-auto" style="padding: 10px; margin-left: 5px;">
+                <div class="block" (click)="setActive('mutual-funds')">
+                    <h4 class="header" [ngClass]="{'active': active_page == 'mutual-funds'}">MUTUAL FUNDS</h4>
+                </div>
+            </div>
+        </div>
+        <div class="row spacing" style="padding-bottom: 0px;">
+            <div class="col-auto">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th *ngFor="let header of headers" scope="col" style="padding-right: 60px;">{{ header | titlecase }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <td *ngFor="let options of constants; index as header_index;">
+                            <ng-container *ngIf="options.length >= 1">
+                                <ng-container *ngIf="active_page == 'producers'">
+                                    <li *ngFor="let producer of options; index as constant_index;" (click)="confirmProducerDelete(producer[0], constant_index)" data-toggle="modal" data-target="#confirmDeleteModal" style="padding-bottom: 5px; display: flex;">
+                                        <span class="option">{{ producer[1] }}</span>
+                                        <span class="hide" style="padding-left: 10px;">x</span>
+                                    </li>
+                                </ng-container>
+                                <ng-container *ngIf="active_page != 'producers'">
+                                    <li *ngFor="let constant of options; index as constant_index;" (click)="confirmConstDelete(header_index, constant_index)" data-toggle="modal" data-target="#confirmDeleteModal" style="padding-bottom: 5px; display: flex;">
+                                        <span class="option">{{ constant }}</span>
+                                        <span class="hide" style="padding-left: 10px;">x</span>
+                                    </li>
+                                </ng-container>
+                            </ng-container>
+                        </td>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row spacing" style="padding-top: 0px;">
+            <div *ngIf="active_page == 'producers'" class="col form-group">
+                <form [formGroup]="addProducerForm" style="display: flex; align-items: center;">
+                    <label for="new_producer" style="margin: 0px;">New Producer: </label>
+                    <input type="text" class="form-control" formControlName="new_producer" id="new_producer" style="max-width: 400px; margin: 0px 15px;" autocomplete="off">
+                    <input class="submit_btn" type="submit" value="SUBMIT" (click)="addProducer()">
+                </form>
+            </div>
+            <div *ngIf="active_page != 'producers'" class="col form-group">
+                <form [formGroup]="addConstantForm" style="display: flex; align-items: center;">
+                    <label for="new_constant" style="margin: 0px; padding-right: 10px;">New Constant: </label>
+                    <select class="custom-select" style="width: 250px;" formControlName="header" id="header">
+                        <option *ngFor="let header of headers" value="{{ header }}">{{ header | titlecase }}</option>
+                    </select>
+                    <input type="text" class="form-control" placeholder="Enter New Constant" formControlName="new_constant" id="new_constant" style="max-width: 400px; margin: 0px 15px;" autocomplete="off">
+                    <input class="submit_btn" type="submit" value="SUBMIT" (click)="addConstant()">
+                </form>
+            </div>
+        </div> 
+        <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="confirmDeleteModalTitle">Are you sure?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="modalDeleteMessage">
+                        Press confirm to remove "______". 
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
+                        <input type="hidden" id="type" name="type" value="">
+                        <input type="hidden" id="data" name="data" value="">
+                        <button id="deleteBtn" type="button" class="btn btn-secondary" (click)="delete()" data-toggle="modal" data-target="#confirmDeleteModal">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ? make settings be drag and drop to allow for reordering -->
+        <!-- <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let movie of movies" cdkDrag>{{movie}}</div>
+        </div> -->
+    </div> 
+</div>
+

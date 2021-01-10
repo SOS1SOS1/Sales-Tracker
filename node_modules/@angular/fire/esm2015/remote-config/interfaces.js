@@ -1,0 +1,6 @@
+/**
+ * @fileoverview added by tsickle
+ * Generated from: interfaces.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW50ZXJmYWNlcy5qcyIsInNvdXJjZVJvb3QiOiIvd29ya3NwYWNlL3NyYy9yZW1vdGUtY29uZmlnLyIsInNvdXJjZXMiOlsiaW50ZXJmYWNlcy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IGZpcmViYXNlIGZyb20gJ2ZpcmViYXNlL2FwcCc7XG5cbmV4cG9ydCB0eXBlIFNldHRpbmdzID0gZmlyZWJhc2UucmVtb3RlQ29uZmlnLlNldHRpbmdzO1xuIl19

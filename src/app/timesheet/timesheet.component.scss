@@ -1,0 +1,9 @@
+@media print {
+    table {
+        font-size: small;
+        width: max-content;
+    }
+    .block {
+        background-color: white !important;
+    }
+}

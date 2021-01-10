@@ -1,0 +1,16 @@
+.submit_btn {
+    padding: 4px 16px;
+}
+
+.hide { 
+    display: none;
+}
+
+.note:hover {
+    color: darkgray;
+}
+
+.note:hover .hide {
+    display: inline-block;
+    color: red;
+}

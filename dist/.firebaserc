@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "state-farm-app-tracker"
+  },
+  "targets": {
+    "state-farm-app-tracker": {
+      "hosting": {
+        "tracker": [
+          "sales-tracker-1993"
+        ]
+      }
+    }
+  }
+}

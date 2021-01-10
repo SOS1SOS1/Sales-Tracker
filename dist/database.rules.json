@@ -1,0 +1,16 @@
+{
+  "rules": {
+    ".read": "auth != null",
+    ".write": "auth != null",
+    "applications": {
+      ".indexOn": [
+        "issue_month"
+      ]
+    },
+    "producers": {
+      ".indexOn": [
+        "name"
+      ]
+    }
+  }
+}
